@@ -1,30 +1,24 @@
 class Solution {
 public:
     int maximalNetworkRank(int n, vector<vector<int>>& roads) {
-         vector<unordered_set<int>> graph(n);
-        
-        // Building the graph (adjacency list). 
-        for (const auto& road: roads) {
-            graph[road[0]].insert(road[1]);
-            graph[road[1]].insert(road[0]);
+        vector<vector<int>>adj(n,vector<int>(n,0));
+        vector<int>indegree(n,0);
+        for(auto i:roads)
+        {
+            indegree[i[0]]++;
+            indegree[i[1]]++;
+            adj[i[0]][i[1]]=1;
+            adj[i[1]][i[0]]=1;
         }
-        
-        int maximal = 0;
-        for(int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                // Sum of neighbors (connected cities) of both cities. 
-                int network_rank = graph[i].size() + graph[j].size();
-                
-                // Reduce the rank by 1 in case the cities are connected to each other.
-                if (graph[j].count(i)) {
-                    --network_rank;
-                }
-                
-                // Maximal network rank is the maximum network rank possible.
-                maximal = max(maximal, network_rank);
+        int maxi = 0;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=i+1;j<n;j++)
+            {
+                int sum = indegree[i]+indegree[j]-adj[i][j];
+                maxi = max(maxi,sum);
             }
-            
         }
-        return maximal;
+        return maxi;
     }
 };
