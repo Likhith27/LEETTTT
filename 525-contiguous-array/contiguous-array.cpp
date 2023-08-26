@@ -7,9 +7,9 @@ public:
         mp[0]=-1;//{sum,index}
         for(int i=0;i<n;i++)
         {
-            if(nums[i])
+            if(nums[i]==1)
                 prefixsum+=1;
-            else
+            else if(nums[i]==0)
                 prefixsum-=1;
             if(mp.find(prefixsum)==mp.end())
             {
