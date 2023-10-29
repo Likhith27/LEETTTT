@@ -1,40 +1,39 @@
 class Solution {
 public:
-    vector<vector<int>> threeSum(vector<int>& nums) 
-    {
-        int n=nums.size();
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        int n = nums.size();
         sort(nums.begin(),nums.end());
-        vector<vector<int>>v;
-        set<vector<int>>s;
-        int sum=0;
-        for(int i=0;i<n;i++)
+        vector<vector<int>>res;
+        for(int i=0;i<n-2;i++)
         {
-            int j=i+1;
-            int k = n-1;
-            
-            while(j<k)
+            if(i==0 || (i>0 && nums[i]!=nums[i-1]))
             {
-                int sum = nums[i]+nums[j]+nums[k];
-                if(sum==0)
+                int low = i+1;
+                int high = n-1;
+                int sum = -nums[i];
+                while(low<high)
                 {
-                    s.insert({nums[i],nums[j],nums[k]});
-                    j++;
-                    k--;
-                }
-                else if(sum<0)
-                {
-                    j++;
-                }
-                else
-                {
-                    k--;
-                }
+                    if(nums[low]+nums[high] == sum)
+                    {
+                        vector<int>temp;
+                        temp.push_back(nums[i]);
+                        temp.push_back(nums[low]);
+                        temp.push_back(nums[high]);
+                        res.push_back(temp);
+                        while(low<high && (nums[low]==nums[low+1]))
+                            low++;
+                        while(low<high && nums[high]==nums[high-1])
+                            high--;
+                        low++;
+                        high--;
+                    }
+                    else if(nums[low]+nums[high]<sum)
+                        low++;
+                    else 
+                        high--;
+                 }
             }
         }
-        for(auto i:s)
-        {
-            v.push_back(i);
-        }
-        return v;
+        return res;
     }
 };
