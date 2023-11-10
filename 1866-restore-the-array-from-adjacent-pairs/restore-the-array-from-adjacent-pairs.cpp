@@ -12,7 +12,9 @@ public:
             if(it.second.size() == 1) {
                 if(ans[0] == INT_MIN) {
                     ans[0] = it.first;
-                }else {
+                }
+                else 
+                {
                     ans.back() = it.first;
                 }
                 vis[it.first] = 1;
