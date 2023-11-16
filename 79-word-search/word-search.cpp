@@ -28,7 +28,7 @@ public:
             {
                 if (board[i][j] == word[0]) 
                 {
-                    if (dfs(board, word, 0, i, j, m, n)) 
+                    if(dfs(board, word, 0, i, j, m, n)) 
                     {
                         return true;
                     }
