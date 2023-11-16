@@ -6,7 +6,10 @@ public:
         string s;
         for(int i=0;i<n;i++)
         {
-            s += nums[i][i]=='0'?"1":"0";
+            if(nums[i][i]=='0')
+                s+='1';
+            else
+                s+='0';
 
         }
         return s;
