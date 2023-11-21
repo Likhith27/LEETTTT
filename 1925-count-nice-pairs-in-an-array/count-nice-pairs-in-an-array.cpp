@@ -17,8 +17,8 @@ public:
         int res=0;
         int mod = 1e9+7;
         map<int,int>cnt;
-        for (int& a : nums)
-            res = (res + cnt[a - rev(a)]++) % mod;
+        for (int& i : nums)
+            res = (res + cnt[i - rev(i)]++) % mod;
         return res;
     }
 };
