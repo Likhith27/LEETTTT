@@ -12,12 +12,13 @@ public:
         }
         return ans;
     }
-    int countNicePairs(vector<int>& nums) {
+    int countNicePairs(vector<int>& nums) 
+    {
         int n=nums.size();
         int res=0;
         int mod = 1e9+7;
         map<int,int>cnt;
-        for (int& i : nums)
+        for (auto i : nums)
             res = (res + cnt[i - rev(i)]++) % mod;
         return res;
     }
