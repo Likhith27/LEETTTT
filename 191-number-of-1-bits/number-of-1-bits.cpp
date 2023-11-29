@@ -4,7 +4,7 @@ public:
     {
        int count = 0;
     
-        while (n) 
+        while(n) 
         {
             n &= (n - 1);
             count++;
