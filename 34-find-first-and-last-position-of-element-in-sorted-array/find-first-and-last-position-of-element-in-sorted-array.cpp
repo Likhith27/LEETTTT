@@ -6,8 +6,8 @@ public:
             return {-1,-1};
         
         auto up = upper_bound(nums.begin(),nums.end(),target);
-        int x = distance(nums.begin(),lb);
-        int y = distance(nums.begin(),up)-1;
+        int x = lb-nums.begin();
+        int y = up-nums.begin()-1;
         return {x,y};
     }
 };
