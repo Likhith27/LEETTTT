@@ -12,7 +12,7 @@ public:
             {
                 low=low+1;
                 high=high-1;
-                continue;
+                // continue;
             }
             else if(nums[low]<=nums[mid])
             {
