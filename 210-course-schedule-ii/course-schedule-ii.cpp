@@ -7,7 +7,7 @@ public:
         for (auto v : g[node]) {
             if (vis[v] == 0) {
                 if (!dfs(v, g)) return false; // If a cycle is detected, return false
-            } else if (vis[v] == 1) {
+            } else if (vis[v] == 1) {//backward edge
                 return false; // A cycle is detected
             }
         }
@@ -27,7 +27,7 @@ public:
         {
             if (!vis[i]) 
             {
-                if (!dfs(i, g)) 
+                if(!dfs(i, g)) 
                     return {}; // If a cycle is detected, return an empty vector
             }
         }
