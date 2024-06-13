@@ -23,9 +23,12 @@ public:
             g[pre[1]].push_back(pre[0]); // Directed edge from prerequisite to course
         }
 
-        for (int i = 0; i < numCourses; ++i) {
-            if (vis[i] == 0) {
-                if (!dfs(i, g)) return {}; // If a cycle is detected, return an empty vector
+        for (int i = 0; i < numCourses; ++i) 
+        {
+            if (!vis[i]) 
+            {
+                if (!dfs(i, g)) 
+                    return {}; // If a cycle is detected, return an empty vector
             }
         }
 
