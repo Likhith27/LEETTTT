@@ -1,47 +1,55 @@
 class Solution {
 public:
-    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
-        int m = mat.size();
-        int n = mat[0].size();
-        vector<vector<int>>vis(m,vector<int>(n,INT_MAX));
-        queue<pair<int,int>>q;
-        for(int i=0;i<m;i++)
+    int n,m;
+    int dx[4]={-1,0,1,0};
+    int dy[4]={0,1,0,-1};
+    bool is_valid(int row,int col)
+    {
+        return row>=0 and row<n and col>=0 and col<m;
+    }
+    vector<pair<int,int>>neighbor(pair<int,int>node)
+    {
+        vector<pair<int,int>>temp;
+        for(int i=0;i<4;i++)
         {
-            for(int j=0;j<n;j++)
+            int newr = node.first + dx[i];
+            int newc = node.second + dy[i];
+            if(is_valid(newr,newc))
+                temp.push_back({newr,newc});
+        }
+        return temp;
+    }
+    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
+        n = mat.size();
+        m = mat[0].size();
+        vector<vector<int>>dis;
+        dis.assign(n,vector<int>(m,-1));
+        queue<pair<int,int>>q;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
             {
                 if(mat[i][j]==0)
                 {
-                    vis[i][j]=0;
+                    dis[i][j]=0;
                     q.push({i,j});
                 }
             }
         }
-        int dr[] = {-1,0,1,0};
-        int dc[] = {0,1,0,-1};
-
         while(!q.empty())
         {
-            auto k = q.front();
+            auto cur = q.front();
             q.pop();
-            int row = k.first;
-            int col = k.second;
 
-            for(int i=0;i<4;i++)
+            for(auto v:neighbor(cur))
             {
-                int newr = row+dr[i];
-                int newc = col+dc[i];
-                if(newr>=0 && newr<m && newc>=0 && newc<n)
+                if(dis[v.first][v.second]==-1)
                 {
-                    if(vis[newr][newc]>1+vis[row][col])
-                    {
-                        vis[newr][newc] = 1+vis[row][col];
-                        q.push({newr,newc});
-                    }
+                    dis[v.first][v.second]=dis[cur.first][cur.second]+1;
+                    q.push(v);
                 }
             }
         }
-        return vis;
-
-
+        return dis;
     }
 };
