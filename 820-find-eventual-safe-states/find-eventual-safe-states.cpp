@@ -4,9 +4,10 @@ public:
     vector<int> safeNodes;
 
     bool dfs(int node, vector<vector<int>>& graph, vector<int>& color) {
-        if (color[node] != 0) {
-            return color[node] == 2;
-        }
+        // if (color[node] != 0) 
+        // {
+        //     return color[node] == 2;
+        // }
         
         color[node] = 1; // Mark the node as being processed
 
