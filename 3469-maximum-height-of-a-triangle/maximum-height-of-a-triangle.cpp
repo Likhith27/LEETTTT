@@ -1,8 +1,8 @@
 class Solution {
-    int maxRows(int balls) {
-        // Calculate the maximum number of complete rows that can be formed with the given balls
-        return static_cast<int>((-1 + std::sqrt(1 + 8.0 * balls)) / 2);
-    }
+    // int maxRows(int balls) {
+    //     // Calculate the maximum number of complete rows that can be formed with the given balls
+    //     return static_cast<int>((-1 + std::sqrt(1 + 8.0 * balls)) / 2);
+    // }
     
     int helper(int red, int blue) {
         int height = 0;
@@ -34,6 +34,6 @@ class Solution {
 
 public:
     int maxHeightOfTriangle(int red, int blue) {
-        return std::max(helper(red, blue), helper(blue, red));
+        return max(helper(red, blue), helper(blue, red));
     }
 };
