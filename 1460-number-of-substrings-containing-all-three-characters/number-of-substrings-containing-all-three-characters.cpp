@@ -15,8 +15,16 @@ public:
             }
             if (mp['a'] > 0 && mp['b'] > 0 && mp['c'] > 0)
                 ans += n - head;
-            mp[s[tail]]--;
-            tail++;
+            if(head>=tail)
+            {
+                mp[s[tail]]--;
+                tail++;
+            }
+            else
+            {
+                tail++;
+                head=tail-1;
+            }
         }
         
         return ans;
