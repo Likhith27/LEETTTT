@@ -20,8 +20,8 @@ public:
             {
                 i++;
             }
-            else
-                j++;
+            // else
+            //     j++;
 
         }
         return sum;
