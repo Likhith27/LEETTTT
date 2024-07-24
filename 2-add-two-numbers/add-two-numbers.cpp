@@ -32,7 +32,6 @@ public:
             ListNode* dummy = new ListNode(sum%10);
             temp1->next = dummy;
             temp1 = temp1->next;
-
         }
         return temp->next;
     }
