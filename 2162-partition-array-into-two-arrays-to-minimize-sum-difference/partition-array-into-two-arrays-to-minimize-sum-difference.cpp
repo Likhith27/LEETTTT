@@ -19,7 +19,8 @@ public:
         }
         return res;
     }
-    int minimumDifference(vector<int>& nums) {
+    int minimumDifference(vector<int>& nums) 
+    {
         int totalSum = accumulate(begin(nums), end(nums), 0);
         int n = nums.size();
         auto left = findAllSubsetsSum(nums, 0, n / 2 - 1);
@@ -30,11 +31,12 @@ public:
             auto r = right[n / 2 - i];
             sort(begin(r), end(r));
 
-            for (int curleftSum : left[i]) {
+            for (int curleftSum : left[i]) 
+            {
                 int needSumFromRight = target - curleftSum;
                 auto it = lower_bound(begin(r), end(r), needSumFromRight);
                 if (it != end(r))
-                    ans = min(ans, abs(totalSum - 2 *(curleftSum + *it)));
+                    ans = min(ans,abs(totalSum - 2*(curleftSum+*it)));
             }
         }
         return ans;
