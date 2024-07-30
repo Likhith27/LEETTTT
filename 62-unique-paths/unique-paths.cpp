@@ -1,26 +1,22 @@
 class Solution {
 public:
-    int uniquePaths(int m, int n) {
-        // vector<vector<int>> dp(m, vector<int>(n));
-        // return dfs(dp, 0, 0);
-        int k = m+n-2;
-        int r = m-1;
-        double res=1;
-        for(int i=1;i<=r;i++)
-        {
-            res = res*(k-r+i)/i;
-        }
-        return (int)res;
+    vector<vector<int>>dp;
+    int f(int row,int col)
+    {
+        //pruning case
+        if(row<0 || col<0)return 0;
+        //base case
+        if(row==0 and col==0)return 1;
+        //cache check
+        if(dp[row][col]!=-1)return dp[row][col];
+        //compute
+        int ans = 0;
+        ans = f(row-1,col)+f(row,col-1);
+        //save and return
+        return dp[row][col]=ans;
     }
-    // int dfs(vector<vector<int>>& dp, int i, int j) 
-    // {
-    //     if(i >= size(dp) || j >= size(dp[0]))   
-    //         return 0;     
-    //     if(i == size(dp)-1 && j == size(dp[0])-1) 
-    //         return 1;    
-    //     if(dp[i][j]!=0) 
-    //         return dp[i][j];    
-                                   
-    //     return dp[i][j] = dfs(dp, i+1, j) + dfs(dp, i, j+1);    
-    // }
+    int uniquePaths(int m, int n) {
+        dp.assign(n+1,vector<int>(m+1,-1));
+        return f(n-1,m-1);
+    }
 };
