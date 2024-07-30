@@ -1,22 +1,22 @@
 class Solution {
 public:
-// int f(int ind)
-// {
-//     if(ind==0)
-//         return 1;
-//     int left = f(ind-1);
-//     int right = f(ind-2);
-//     return left+right;
-// }
+    int dp[50];
+    int rec(int ind)
+    {
+        //pruning 
+        if(ind<=0)return 0;
+        //base case 
+        if(ind==1)return 1;
+        if(ind==2)return 2;
+        //cache check
+        if(dp[ind]!=-1)return dp[ind];
+        //compute
+        int ans= rec(ind-1)+rec(ind-2);
+        //save and return
+        return dp[ind]=ans;
+    }
     int climbStairs(int n) {
-        int prev1=1;
-        int prev2 =1;
-        for(int i=2;i<=n;i++)
-        {
-            int cur = prev1 + prev2;
-            prev2 = prev1;
-            prev1 = cur;
-        }
-        return prev1;
+        memset(dp,-1,sizeof(dp));
+        return rec(n);
     }
 };
