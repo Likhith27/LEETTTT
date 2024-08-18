@@ -8,12 +8,12 @@ public:
             if (sum + arr[i] > x) {
                 students++;  // Start a new subarray
                 sum = arr[i];
-                if (students > k) return false;  // Early exit if we exceed k subarrays
+         // Early exit if we exceed k subarrays
             } else {
                 sum += arr[i];
             }
         }
-        return true;  // Return true if students <= k
+        return students<=k;  // Return true if students <= k
     }
     
     int splitArray(vector<int>& nums, int k) {
