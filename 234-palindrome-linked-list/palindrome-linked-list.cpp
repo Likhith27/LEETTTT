@@ -12,7 +12,7 @@ class Solution {
 public:
     bool isPalindrome(ListNode* head) {
         vector<int> listVals;
-        while (head) 
+        while(head!=NULL) 
         {
             listVals.push_back(head->val);
             head = head->next;
