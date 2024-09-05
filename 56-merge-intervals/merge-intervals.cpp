@@ -8,23 +8,23 @@ public:
             return v;
         }
         sort(intervals.begin(),intervals.end());
-        vector<int>temp = intervals[0];
+        vector<int>last_end = intervals[0];
 
         for(auto range:intervals)
         {
             //case-I if(next intervals start is less than or equal to first interval end)
-            if(range[0]<=temp[1])
+            if(range[0]<=last_end[1])
             {
-                temp[1]=max(temp[1],range[1]);
+                last_end[1]=max(last_end[1],range[1]);
             }
             //case-2(if they don't overlap then directly add to the range list)
             else
             {
-                v.push_back(temp);
-                temp = range;
+                v.push_back(last_end);
+                last_end = range;
             }
         }
-        v.push_back(temp);
+        v.push_back(last_end);
         return v;
 
     }
