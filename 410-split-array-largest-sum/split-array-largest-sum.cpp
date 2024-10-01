@@ -1,19 +1,29 @@
 class Solution {
 public:
-    bool check(int x, int k, vector<int>& arr) {
-        int students = 1;  // Start with 1 subarray
-        int sum = 0;
+    int check(int x,int k,vector<int>&arr)
+    {
         int n = arr.size();
-        for (int i = 0; i < n; i++) {
-            if (sum + arr[i] > x) {
-                students++;  // Start a new subarray
-                sum = arr[i];
-         // Early exit if we exceed k subarrays
-            } else {
-                sum += arr[i];
+        int no_of_painters=0;
+        int last_sum=0;
+        for(int i=0;i<n;i++)
+        {
+            if(last_sum>=arr[i])
+            {
+                last_sum-=arr[i];
+            }
+            else
+            {
+                no_of_painters++;
+                last_sum=x;
+                if(last_sum>=arr[i])
+                {
+                    last_sum-=arr[i];
+                }
+                else
+                    return 0;
             }
         }
-        return students<=k;  // Return true if students <= k
+        return no_of_painters<=k;
     }
     
     int splitArray(vector<int>& nums, int k) {
