@@ -25,7 +25,7 @@ public:
         if(k>=arr[level])take = rec(level+1,k-arr[level],arr)%mod;
 
         //save and return 
-        return dp[level][k]= ((take)%mod+(2*not_take)%mod)%mod;
+        return dp[level][k]= ((take)%mod+(2*not_take)%mod)%mod;//most important concept whenever subset of subset think of the contribution technique and use 2* or 3^n-1 or as vivek said (very very important)
     }
     int sumOfPower(vector<int>& nums, int k) {
         n = nums.size();
