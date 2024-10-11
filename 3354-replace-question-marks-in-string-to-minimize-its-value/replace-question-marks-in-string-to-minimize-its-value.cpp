@@ -21,7 +21,9 @@ public:
             pq.pop();
             add.push_back(cur.second+'a');
             cur.first++;
+            cout<<cur.first<<" "<<cur.second<<endl;
             pq.push(cur);
+            // cout<<cur.first<<" "<<cur.second<<endl;
         }
         sort(add.begin(),add.end());
         int j =0;
