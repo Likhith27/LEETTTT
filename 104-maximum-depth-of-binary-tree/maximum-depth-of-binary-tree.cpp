@@ -15,11 +15,11 @@ public:
         if(root==NULL)return 0;
         queue<TreeNode*>q;
         q.push(root);
-        vector<vector<int>>v;
+        vector<int>v;
         while(!q.empty())
         {
             int n = q.size();
-            vector<int>t;
+            int cnt=0;
             for(int i=0;i<n;i++)
             {
                 auto cur = q.front();
@@ -27,9 +27,9 @@ public:
 
                 if(cur->left)q.push(cur->left);
                 if(cur->right)q.push(cur->right);
-                t.push_back(cur->val);
+                cnt++;
             }
-            v.push_back(t);
+            v.push_back(cnt);
         }
         return v.size();
     }
