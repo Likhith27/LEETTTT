@@ -12,10 +12,10 @@ public:
             else if(ele==nums[i])cnt++;
             else cnt--;
         }
-        int cnt1=0;
-        for(int i=0;i<n;i++){
-            if(ele==nums[i])cnt1++;
-        }
+        // int cnt1=0;
+        // for(int i=0;i<n;i++){
+        //     if(ele==nums[i])cnt1++;
+        // }
         return ele;      
     }
 };
