@@ -6,5 +6,6 @@ public:
         if(n!=m)return false;
         string t = s+s;
         return t.find(goal)!=string::npos;
+
     }
 };
