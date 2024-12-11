@@ -1,27 +1,39 @@
 class Solution {
 public:
-    void f(int ind,string &digits,string &temp,vector<string>&map,vector<string>&ans)
+
+    void f(int level,string digits,string str,vector<string>&v,map<char,string>&mp)
     {
-        if(digits.size()==0)
-            return;
-        if(ind == digits.size())
+        //base case
+        if(digits.size()==0)return;
+        if(level==digits.size())
         {
-            ans.push_back(temp);
+            v.push_back(str);
             return;
         }
-        string letters = map[digits[ind]-'0'];
-        for(char ch:letters)
-        {
-            temp += ch;
-            f(ind+1,digits,temp,map,ans);
-            temp.pop_back();
+        //lccm
+        //level choice check move
+        string s = mp[digits[level]];
+        for(char ch:s){
+            str += ch;
+            f(level+1,digits,str,v,mp);
+            str.pop_back();
         }
+        
     }
     vector<string> letterCombinations(string digits) {
-        vector<string>ans;
-        vector<string>map = {"0","1","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
-        string temp;
-        f(0,digits,temp,map,ans);
-        return ans;
+        //str = "9999"
+        vector<string>v;
+        map<char,string>mp;
+        int n = digits.size();
+        mp['2']="abc";
+        mp['3']="def";
+        mp['4']="ghi";
+        mp['5']="jkl";
+        mp['6']="mno";
+        mp['7']="pqrs";
+        mp['8']="tuv";
+        mp['9']="wxyz";
+        f(0,digits,"",v,mp);
+        return v;
     }
 };
