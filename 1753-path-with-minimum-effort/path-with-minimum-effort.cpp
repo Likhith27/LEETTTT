@@ -18,13 +18,13 @@ public:
         dist[0][0] = 0;
 
         // Priority queue to store {effort, {row, col}}
-        priority_queue<pair<int,pair<int,int>>> pq;
+        priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>> pq;
         pq.push({0, {0, 0}});
 
         while (!pq.empty()) {
             auto it = pq.top();
             pq.pop();
-            int effort = -it.first;
+            int effort = it.first;
             int row = it.second.first;
             int col = it.second.second;
 
@@ -40,7 +40,7 @@ public:
 
                     if (newEffort < dist[newr][newc]) {
                         dist[newr][newc] = newEffort;
-                        pq.push({-newEffort, {newr, newc}});
+                        pq.push({newEffort, {newr, newc}});
                     }
                 }
             }
