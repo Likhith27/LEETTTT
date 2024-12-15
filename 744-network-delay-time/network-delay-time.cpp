@@ -1,28 +1,39 @@
 class Solution {
 public:
     int networkDelayTime(vector<vector<int>>& times, int n, int k) {
-        vector<int>dist(n+1,INT_MAX);
-        dist[k]=0;
-        for(int i=1;i<=n-1;i++)
+        vector<vector<pair<int,int>>>g(n+1);
+        // g.resize(n+1);
+        for(auto &it:times)
         {
-            for(auto i:times)
+            g[it[0]].push_back({it[1],it[2]});
+        }
+        vector<int>dis(n+1,1e9);
+        priority_queue<pair<int,int>>pq;
+        
+        pq.push({-0,k});
+        dis[k]=0;
+        while(!pq.empty())
+        {
+            auto cur = pq.top();
+            pq.pop();
+            
+            int d = -cur.first;
+            int node = cur.second;
+
+            for(auto v:g[node])
             {
-                int u = i[0];
-                int v = i[1];
-                int t = i[2];
-                if(dist[u]!=INT_MAX and t+dist[u]<dist[v])
+                if(dis[v.first]>dis[node]+v.second)
                 {
-                    dist[v]=t+dist[u];
+                    dis[v.first]=dis[node]+v.second;
+                    pq.push({-dis[v.first],v.first});
                 }
             }
         }
-        int maxi=0;
-        for(int i=1;i<=n;i++)
-        {
-            maxi = max(maxi,dist[i]);
+        int maxi = -1e9;
+        for(int i=1;i<=n;i++){
+            maxi = max(maxi,dis[i]);
         }
-        if(maxi==INT_MAX)
-            return -1;
-        return maxi;
+        if(maxi==1e9)return -1;
+        else return maxi;
     }
 };
