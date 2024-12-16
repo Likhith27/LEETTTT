@@ -10,8 +10,9 @@ public:
 
     void dfs(int row, int col, vector<vector<int>>& grid) {
         if (!is_valid(row, col) || grid[row][col] != 1) return;
-        grid[row][col] = 2;  // Mark as visited
-        for (int i = 0; i < 4; i++) {
+        grid[row][col] = 2;  
+        for (int i = 0; i < 4; i++) 
+        {
             int newr = row + dx[i];
             int newc = col + dy[i];
             dfs(newr, newc, grid);
