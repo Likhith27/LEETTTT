@@ -18,7 +18,8 @@ public:
                 for(char ch='a';ch<='z';ch++)
                 {
                     word[i]=ch;
-                    if(st.find(word)!=st.end()){
+                    if(st.find(word)!=st.end())
+                    {
                         st.erase(word);
                         q.push({word,steps+1});
                     } 
