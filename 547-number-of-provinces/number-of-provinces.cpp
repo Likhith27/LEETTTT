@@ -14,7 +14,7 @@ public:
        vector<vector<int>>g(n+1);
        vis.assign(n+1,0);
        for(int i=0;i<n;i++){
-        for(int j=0;j<n;j++){
+        for(int j=i;j<n;j++){
             if(isConnected[i][j]==1)
             {
                 g[i+1].push_back(j+1);
