@@ -1,68 +1,54 @@
 class Solution {
 public:
-    int n,m;
-    vector<vector<int>>dis;
     int dx[4]={-1,0,1,0};
     int dy[4]={0,1,0,-1};
-    bool is_valid(int row,int col)
+    int orangesRotting(vector<vector<int>>& grid) 
     {
-        if(row>=0 and row<n and col>=0 and col<m)return 1;
-        else return 0;
-    }
-    vector<pair<int,int>>neighbor(pair<int,int>node,vector<vector<int>>& grid)
-    {
-        vector<pair<int,int>>temp;
-        for(int i=0;i<4;i++)
-        {
-            int newr = node.first+dx[i];
-            int newc = node.second + dy[i];
-            if(is_valid(newr,newc) and grid[newr][newc]==1)
-                temp.push_back({newr,newc});
-        }
-        return temp;
-    }
-    int orangesRotting(vector<vector<int>>& grid) {
-        n = grid.size();
-        m = grid[0].size();
-        dis.assign(n,vector<int>(m,-1));
+        int m = grid.size();
+        int n = grid[0].size();
+        vector<vector<int>>dis;
         queue<pair<int,int>>q;
-        for(int i=0;i<n;i++)
+        int count=0;
+        for(int i=0;i<m;i++)
         {
-            for(int j=0;j<m;j++)
+            for(int j=0;j<n;j++)
             {
                 if(grid[i][j]==2)
                 {
-                    dis[i][j]=0;
+                    grid[i][j]=0;
                     q.push({i,j});
                 }
+                else if(grid[i][j]==1)
+                    count++;
             }
         }
-        while(!q.empty())
-        {
-            auto cur = q.front();
-            q.pop();
-            for(auto v:neighbor(cur,grid))
+        if(count==0)
+            return 0;
+        int time=-1;
+        while(!q.empty()){
+            int s=q.size();
+            time++;
+            for(int p=0;p<s;p++)
             {
-                if(grid[v.first][v.second]!=2)
+                auto t = q.front();
+                q.pop();
+                int cx = t.first,cy = t.second;
+                for(int i=0;i<4;i++)
                 {
-                    grid[v.first][v.second]=2;
-                    dis[v.first][v.second]=dis[cur.first][cur.second]+1;
-                    q.push(v);
+                    int nx=cx+dx[i];
+                    int ny=cy+dy[i];
+                    if(nx>=0 && ny>=0 &&nx<grid.size()&&ny<grid[0].size()&& grid[cx+dx[i]][cy+dy[i]]==1)
+                    {
+                        grid[cx+dx[i]][cy+dy[i]]=0;
+                        count--;
+                        q.push({cx+dx[i],cy+dy[i]});
+                    }
                 }
             }
+            
         }
-        int maxi = 0;
-        for(int i=0;i<n;i++)
-        {
-            for(int j=0;j<m;j++)
-            {
-                if(grid[i][j]==1)
-                {
-                   return -1;
-                }
-                maxi = max(dis[i][j],maxi);
-            }
-        }
-        return maxi;
+        if(count!=0)    
+            return -1;
+        return time;
     }
 };
