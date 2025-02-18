@@ -10,24 +10,21 @@
  */
 class Solution {
 public:
-    ListNode* oddEvenList(ListNode* head) 
-    {
-        if(head==NULL||head->next==NULL||head->next->next==NULL)return head;
+    ListNode* oddEvenList(ListNode* head) {
+        if(head==NULL || head->next==NULL || head->next->next==NULL)return head;
+
         ListNode* odd = head;
         ListNode* even = head->next;
-        ListNode* even_start = even; 
+        ListNode* even_start = even;
 
-        while (even && even->next) 
-        { 
-            odd->next = even->next;
-            odd = odd->next;
+        while(even and even->next){
+            odd->next=even->next;
+            odd=odd->next;
 
-            even->next = odd->next;
+            even->next=odd->next;
             even = even->next;
         }
-
-        odd->next = even_start; // Attach even list after the odd list
+        odd->next = even_start;
         return head;
     }
-
 };
