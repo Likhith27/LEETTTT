@@ -20,25 +20,24 @@ public:
         ListNode* cur = temp;
         ListNode* nex = temp;
 
-        int cnt=0;
         cur = head;
+        int cnt=0;
+        
         while(cur!=NULL){
-            cur=cur->next;
+            cur = cur->next;
             cnt++;
         }
 
         while(cnt>=k){
             cur = prev->next;
             nex = cur->next;
-
-            for(int i=1;i<k;i++)
-            {
+            for(int i=1;i<k;i++){
                 cur->next = nex->next;
                 nex->next = prev->next;
                 prev->next = nex;
                 nex = cur->next;
             }
-            prev = cur;
+            prev=cur;
             cnt-=k;
         }
         return temp->next;
