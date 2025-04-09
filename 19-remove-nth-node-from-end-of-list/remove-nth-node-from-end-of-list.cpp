@@ -36,7 +36,7 @@ public:
 
         if (cur && cur->next) {
             ListNode* toDelete = cur->next;
-            cur->next = cur->next->next;
+            cur->next = toDelete->next;
         }
         return res;
     }
